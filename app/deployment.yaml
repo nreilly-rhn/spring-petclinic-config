@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
+    app: spring-petclinic
   labels:
     app: spring-petclinic
     app.kubernetes.io/component: web
@@ -22,8 +23,12 @@ spec:
     spec:
       containers:
       - name: spring-petclinic
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 500m
         imagePullPolicy: Always
-        image: quay.io/siamaksade/spring-petclinic:latest
+        image: image-registry.openshift-image-registry.svc:5000/dev/spring-petclinic:latest
         livenessProbe:
           failureThreshold: 3
           httpGet:

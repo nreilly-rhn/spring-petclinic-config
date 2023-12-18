@@ -5,6 +5,9 @@ metadata:
     app: spring-petclinic
   name: spring-petclinic
 spec:
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
   port:
     targetPort: 8080-tcp
   to:
